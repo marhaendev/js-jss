@@ -1,7 +1,15 @@
+// name: jss.js
+// desc: simple js for styling html
+// auth: @marhaendev
+// licence: MIT License 
 
+// ================ usage
+// import this to your project
+// <script src="https://cdn.jsdelivr.net/gh/marhaendev/js-jss@latest/jss.js"></script> 
 
-// ================ CLASSES
+// ================ handle classes
 // =========== ac-
+// ac (add children - classes)
 
 document.addEventListener("DOMContentLoaded", function() {
     // Select all elements with class names starting with 'ac-'
@@ -55,10 +63,12 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
+// =========== end ac-
 
 
 // =========== clav.js
 // class view adjustment
+// for responsive
 
   function applyResponsiveClasses() {
     const elements = document.querySelectorAll('[class*="sm-"], [class*="st-"], [class*="sd-"], [class*="std-"], [class*="smt-"], [class*="smd-"]');
@@ -102,3 +112,4 @@ applyResponsiveClasses();
 
 // Apply classes on resize
 window.addEventListener('resize', applyResponsiveClasses);
+// =========== end clav.js
