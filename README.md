@@ -23,8 +23,9 @@ To integrate this code into your project, follow these steps:
 
 ### CDN
 Include the script in your HTML file
+```html
 <script src="https://cdn.jsdelivr.net/gh/marhaendev/js-jss@latest/jss.js"></script>
-
+```
 ## Features
 JSS can do:
 - add children class 
@@ -32,7 +33,7 @@ JSS can do:
 
 ## Usage
 You can see documentation here:
-- adjust class in different device => clav.js documentation
+- `adjust class in different device` => [js-clav documentation](https://github.com/marhaendev/js-clav)
 
 # License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/marhaendev/js-jss/tree/master?tab=MIT-1-ov-file)  file for details.
