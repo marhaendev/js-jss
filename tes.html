@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example HTML with Specific Classes</title>
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col {
+            flex: 1 0 50%; /* 2 columns per row */
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+
+        
+  .blue{
+    background-color: blue;
+  }
+
+  .yellow{
+    background-color: yellow;
+  }
+
+  .red{
+    background-color: red;
+  }
+    </style>
+</head>
+<body>
+
+<div class="row">
+    <div class="ac--blue">
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <div>
+            <div>Grandchild</div>
+        </div>
+    </div>
+    <div class="ac-1--red">
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <div>
+            <div>Grandchild</div>
+        </div>
+    </div>
+    <div class="ac-first--yellow">
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <div>
+            <div>Grandchild</div>
+        </div>
+    </div>
+    <div class="ac-last--green">
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <div>
+            <div>Grandchild</div>
+        </div>
+    </div>
+    <div class="ac-odd--purple">
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <div>
+            <div>Grandchild</div>
+        </div>
+    </div>
+    <div class="ac-even--orange">
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <div>
+            <div>Grandchild</div>
+        </div>
+    </div>
+    <div class="ac-1-2--cyan">
+        <div>
+            <div>
+                <div>Great Grandchild</div>
+            </div>
+        </div>
+    </div>
+    <div class="ac-1-3-1--pink">
+        <div>
+            <div>
+                <div>Great Great Grandchild</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll('[class*="ac-"]');
+
+        elements.forEach(function(element) {
+            const classList = Array.from(element.classList);
+            classList.forEach(function(cls) {
+                if (cls.startsWith('ac-')) {
+                    const classToAdd = cls.substring(3);
+
+                    const children = Array.from(element.children);
+
+                    if (classToAdd.startsWith('--')) {
+                        // Add class to all children
+                        children.forEach(function(child) {
+                            child.classList.add(classToAdd.substring(2));
+                        });
+                    } else if (classToAdd.startsWith('nth-')) {
+                        // Add class to specific nth child
+                        const n = parseInt(classToAdd.substring(4)) - 1;
+                        if (n >= 0 && n < children.length) {
+                            children[n].classList.add(classToAdd.substring(8));
+                        }
+                    } else if (classToAdd.startsWith('first-')) {
+                        // Add class to the first child
+                        if (children.length > 0) {
+                            children[0].classList.add(classToAdd.substring(6));
+                        }
+                    } else if (classToAdd.startsWith('last-')) {
+                        // Add class to the last child
+                        if (children.length > 0) {
+                            children[children.length - 1].classList.add(classToAdd.substring(5));
+                        }
+                    } else if (classToAdd.startsWith('odd-')) {
+                        // Add class to odd-indexed children
+                        children.forEach(function(child, index) {
+                            if (index % 2 === 0) {
+                                child.classList.add(classToAdd.substring(4));
+                            }
+                        });
+                    } else if (classToAdd.startsWith('even-')) {
+                        // Add class to even-indexed children
+                        children.forEach(function(child, index) {
+                            if (index % 2 !== 0) {
+                                child.classList.add(classToAdd.substring(5));
+                            }
+                        });
+                    } else if (/^\d+-/.test(classToAdd)) {
+                        // Add class to nth child in nested structure
+                        const indexes = classToAdd.split('--')[0].split('-').map(num => parseInt(num) - 1);
+                        const classes = classToAdd.split('--').slice(1);
+                        let currentChildren = [element];
+                        indexes.forEach(function(index) {
+                            let nextChildren = [];
+                            currentChildren.forEach(function(currentChild) {
+                                const child = currentChild.children[index];
+                                if (child) {
+                                    nextChildren.push(child);
+                                }
+                            });
+                            currentChildren = nextChildren;
+                        });
+                        currentChildren.forEach(function(child) {
+                            child.classList.add(...classes);
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
