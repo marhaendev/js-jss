@@ -24,7 +24,7 @@ To integrate this code into your project, follow these steps:
 ### CDN
 Include the script in your HTML file
 ```html
-<script src="https://cdn.jsdelivr.net/gh/marhaendev/js-jss@latest/jss.js"></script>
+<script src="https://raw.githack.com/marhaendev/js-jss/master/jss.js"></script>
 ```
 ## Features
 JSS can do:
