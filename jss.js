@@ -1,5 +1,5 @@
 // name: jss.js
-// vers: 1.0.3
+// vers: 1.0.4
 // desc: simple js for styling html
 // auth: @marhaendev
 // licence: MIT License 
@@ -10,61 +10,61 @@
 // ================ 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Select all elements with class names starting with 'ac-'
-    const elements = document.querySelectorAll('[class*="ac-"]');
+    // Select all elements with the 'ac' attribute
+    const elements = document.querySelectorAll('[ac]');
 
     elements.forEach(function(element) {
-        // Find all class names that start with 'ac-'
-        const classList = Array.from(element.classList);
-        classList.forEach(function(cls) {
-            if (cls.startsWith('ac-')) {
-                // Extract the part after 'ac-'
-                const classToAddParts = cls.split('--');
-                const selector = classToAddParts[0].substring(3);
-                const classesToAdd = classToAddParts.slice(1);
+        // Get the value of the 'ac' attribute
+        const acRules = element.getAttribute('ac');
+        
+        // Split the rules by space
+        const rules = acRules.split(' ');
 
-                const children = element.children;
+        rules.forEach(function(rule) {
+            // Split each rule by colon
+            const [selector, ...classesToAdd] = rule.includes(':') ? rule.split(':') : ['', rule];
 
-                if (selector === '') {
-                    // Add classes to all children
-                    for (let i = 0; i < children.length; i++) {
-                        children[i].classList.add(...classesToAdd);
-                    }
-                } else if (selector === 'first') {
-                    // Add classes to the first child
-                    if (children.length > 0) {
-                        children[0].classList.add(...classesToAdd);
-                    }
-                } else if (selector === 'last') {
-                    // Add classes to the last child
-                    if (children.length > 0) {
-                        children[children.length - 1].classList.add(...classesToAdd);
-                    }
-                } else if (selector === 'odd') {
-                    // Add classes to odd children (1, 3, 5, ...)
-                    for (let i = 0; i < children.length; i += 2) {
-                        children[i].classList.add(...classesToAdd);
-                    }
-                } else if (selector === 'even') {
-                    // Add classes to even children (2, 4, 6, ...)
-                    for (let i = 1; i < children.length; i += 2) {
-                        children[i].classList.add(...classesToAdd);
-                    }
-                } else if (/^\d/.test(selector)) {
-                    // Add classes to the specified nth-child (1-based index)
-                    const parts = selector.split('-');
-                    let currentChildren = Array.from(children);
-                    for (let i = 0; i < parts.length; i++) {
-                        const index = parseInt(parts[i]) - 1; // Convert to 0-based index
-                        if (index >= 0 && index < currentChildren.length) {
-                            if (i === parts.length - 1) {
-                                currentChildren[index].classList.add(...classesToAdd);
-                            } else {
-                                currentChildren = Array.from(currentChildren[index].children);
-                            }
+            const children = element.children;
+
+            if (selector === '') {
+                // Add classes to all children
+                for (let i = 0; i < children.length; i++) {
+                    children[i].classList.add(...classesToAdd);
+                }
+            } else if (selector === 'first') {
+                // Add classes to the first child
+                if (children.length > 0) {
+                    children[0].classList.add(...classesToAdd);
+                }
+            } else if (selector === 'last') {
+                // Add classes to the last child
+                if (children.length > 0) {
+                    children[children.length - 1].classList.add(...classesToAdd);
+                }
+            } else if (selector === 'odd') {
+                // Add classes to odd children (1, 3, 5, ...)
+                for (let i = 0; i < children.length; i += 2) {
+                    children[i].classList.add(...classesToAdd);
+                }
+            } else if (selector === 'even') {
+                // Add classes to even children (2, 4, 6, ...)
+                for (let i = 1; i < children.length; i += 2) {
+                    children[i].classList.add(...classesToAdd);
+                }
+            } else if (/^\d/.test(selector)) {
+                // Add classes to the specified nth-child (1-based index)
+                const parts = selector.split('-');
+                let currentChildren = Array.from(children);
+                for (let i = 0; i < parts.length; i++) {
+                    const index = parseInt(parts[i]) - 1; // Convert to 0-based index
+                    if (index >= 0 && index < currentChildren.length) {
+                        if (i === parts.length - 1) {
+                            currentChildren[index].classList.add(...classesToAdd);
                         } else {
-                            break;
+                            currentChildren = Array.from(currentChildren[index].children);
                         }
+                    } else {
+                        break;
                     }
                 }
             }
@@ -110,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-
 
     // Apply classes on load
     applyResponsiveClasses();
