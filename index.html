@@ -39,35 +39,37 @@
 <body>
     <div>
         <h2># Using ac-* (* is number)</h2>
-        <div class="ac-1-lightblue ac-2-lightgreen ac-3-lightcoral">
-            <div>Lorem Ipsum 1</div>
-            <div>Lorem Ipsum 2</div>
-            <div>Lorem Ipsum 3</div>
-        </div>
-        <h2># Using ac-first and ac-last and ac-2</h2>
-        <div class="ac-first-lightblue ac-2-lightgreen ac-last-lightcoral">
-            <div>Lorem Ipsum 1</div>
-            <div>Lorem Ipsum 2</div>
-            <div>Lorem Ipsum 3 - Not targeted</div>
-            <div>Lorem Ipsum 4</div>
-        </div>
-        
-        <h2># Using ac-odd and ac-even</h2>
-        <div class="ac-odd-lightblue ac-even-lightgreen">
-            <div>Lorem Ipsum 1 - color only odd</div>
-            <div>Lorem Ipsum 2 - color only even</div>
-            <div>Lorem Ipsum 3 - color only odd</div>
-            <div>Lorem Ipsum 4 - color only even</div>
-        </div>
-        <h2># Other example</h2>
-        <div class="ac-1-d-block ac-2-d-none ac-3-text-center ac-last-border">
-            <div>Lorem Ipsum 1 - display block</div>
-            <div>Lorem Ipsum 2 - display none</div>
-            <div>Lorem Ipsum 3 - text center</div>
-            <div>Lorem Ipsum 4 - border</div>
-        </div>
-    </div>
+<div ac="1:lightblue 2:lightgreen 3:lightcoral">
+    <div>Lorem Ipsum 1</div>
+    <div>Lorem Ipsum 2</div>
+    <div>Lorem Ipsum 3</div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/gh/marhaendev/js-jss/jss.js"></script>
+<h2># Using ac-first and ac-last and ac-2</h2>
+<div ac="first:lightblue 2:lightgreen last:lightcoral">
+    <div>Lorem Ipsum 1</div>
+    <div>Lorem Ipsum 2</div>
+    <div>Lorem Ipsum 3 - Not targeted</div>
+    <div>Lorem Ipsum 4</div>
+</div>
+
+<h2># Using ac-odd and ac-even</h2>
+<div ac="odd:lightblue even:lightgreen">
+    <div>Lorem Ipsum 1 - color only odd</div>
+    <div>Lorem Ipsum 2 - color only even</div>
+    <div>Lorem Ipsum 3 - color only odd</div>
+    <div>Lorem Ipsum 4 - color only even</div>
+</div>
+
+<h2># Other example</h2>
+<div ac="1:d-block 2:d-none 3:text-center last:border">
+    <div>Lorem Ipsum 1 - display block</div>
+    <div>Lorem Ipsum 2 - display none</div>
+    <div>Lorem Ipsum 3 - text center</div>
+    <div>Lorem Ipsum 4 - border</div>
+</div>
+
+
+    <script src="https://raw.githack.com/marhaendev/js-jss/master/jss.js"></script>
 </body>
 </html>
